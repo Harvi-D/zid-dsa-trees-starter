@@ -200,6 +200,30 @@ class BinarySearchTree {
     }
     return values;
   }
+
+  getHeight(currentHeight = 0) {
+    //base case: if current node does not have a left of right child;
+    //return height;
+    if (!this.left && !this.right) return currentHeight;
+
+    //recursive case: otherwise, compute the new height;
+    const newHeight = currentHeight + 1;
+
+    //if there is no left child, recurse down the right subtree only;
+    //pass down the height of the current node;
+    if (!this.left) return this.right.getHeight(newHeight);
+
+    //if there is no right child, recurse down the left subtree only;
+    //pass down the height of the current node;
+    if (!this.right) return this.left.getHeight(newHeight);
+
+    //if both children exist, recurse down both subtrees;
+    //pass doen the height of the current node;
+    const leftHeight = this.left.getHeight(newHeight);
+    const rightHeight = this.right.getHeight(newHeight);
+    //return the greater of the two heights
+    return Math.max(leftHeight, rightHeight);
+  }
 }
 
 module.exports = BinarySearchTree;
