@@ -126,6 +126,21 @@ class BinarySearchTree {
     }
     return this.left._findMin();
   }
+
+  dfsInOrder(values = []) {
+    //first, process the left node recursively
+    if (this.left) {
+      values = this.left.dfsInOrder(values);
+    }
+    //next, process the current node
+    values.push(this.value);
+
+    //last, process the right node recursively
+    if (this.right) {
+      values = this.right.dfsInOrder(values);
+    }
+    return values;
+  }
 }
 
 module.exports = BinarySearchTree;
