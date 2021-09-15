@@ -224,6 +224,19 @@ class BinarySearchTree {
     //return the greater of the two heights
     return Math.max(leftHeight, rightHeight);
   }
+
+  isBST() {
+    //use existing 'dfsInorder()' method to traverse the tree;
+    const values = this.dfsInOrder();
+    //check if he array returned by the in-order dfs is sorted;
+    for (let i = 0; i < values.length; i++) {
+      //compare current and previous values;
+      if (values[i] < values[i - 1]) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 module.exports = BinarySearchTree;
