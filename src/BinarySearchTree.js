@@ -141,6 +141,39 @@ class BinarySearchTree {
     }
     return values;
   }
+
+  dfsPreOrder(values = []) {
+    //first, process the current node
+    values.push(this.value);
+
+    //next, process the left branch recursively
+    if (this.left) {
+      values = this.left.dfsPreOrder(values);
+    }
+
+    //last, process the right branch recursively
+    if (this.right) {
+      values = this.right.dfsPreOrder(values);
+    }
+    return values;
+  }
+
+  dfsPostOrder(values = []) {
+    //first, process the left branch recursively
+    if (this.left) {
+      values = this.left.dfsPostOrder(values);
+    }
+
+    //next, process the right branch recursively
+    if (this.right) {
+      values = this.right.dfsPostOrder(values);
+    }
+
+    //last, process the current node
+    values.push(this.vlaue);
+
+    return values;
+  }
 }
 
 module.exports = BinarySearchTree;
